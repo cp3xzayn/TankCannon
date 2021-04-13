@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
+    /// <summary> 戦車のスピード </summary>
     [SerializeField] float m_speed = 2;
+    /// <summary> JoyStick </summary>
     [SerializeField] FloatingJoystick m_floatingJoystick = null;
-    Rigidbody rb;
+    Rigidbody m_rb;
+    /// <summary> 入力された方向ベクトル </summary>
     private Vector3 m_direction;
+    /// <summary> 入力された方向ベクトル </summary>
+    public Vector3 Direction { get { return m_direction; } }
 
     void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
+        m_rb = this.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -25,6 +30,6 @@ public class TankController : MonoBehaviour
     void FixedUpdate()
     {
         m_direction = Vector3.forward * m_floatingJoystick.Vertical + Vector3.right * m_floatingJoystick.Horizontal;
-        rb.velocity = m_direction * m_speed;
+        m_rb.velocity = m_direction * m_speed;
     }
 }

@@ -9,15 +9,17 @@ public class ShotManager : MonoBehaviour
     [SerializeField] GameObject m_shotObject = null;
     /// <summary> 弾を発射するオブジェクト </summary>
     [SerializeField] GameObject m_shoter = null;
+    /// <summary> TankController </summary>
+    [SerializeField] TankController m_tankController = null;
     /// <summary> 射程範囲 </summary>
     [SerializeField] float m_searchRangeRadius = 5f;
-    /// <summary> シーン上にある敵のオブジェクトの配列 </summary>
-    GameObject[] m_enemys;
-
-    /// <summary> 一度のみ発射する </summary>
-    private bool isOneShot = true;
     /// <summary> 弾の発射角度 </summary>
     [SerializeField] float m_shotAngle = 60.0f;
+    /// <summary> シーン上にある敵のオブジェクトの配列 </summary>
+    GameObject[] m_enemys;
+    /// <summary> 一度のみ発射する </summary>
+    private bool isOneShot = true;
+
     void Start()
     {
         
@@ -25,9 +27,12 @@ public class ShotManager : MonoBehaviour
 
     void Update()
     {
-        if (isOneShot)
+        if (m_tankController.Direction == Vector3.zero)
         {
-            Shot();
+            if (isOneShot)
+            {
+                Shot();
+            }
         }
     }
 
