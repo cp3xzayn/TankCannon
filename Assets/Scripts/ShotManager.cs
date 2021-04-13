@@ -11,14 +11,15 @@ public class ShotManager : MonoBehaviour
     [SerializeField] GameObject m_shoter = null;
     /// <summary> TankController </summary>
     [SerializeField] TankController m_tankController = null;
-    /// <summary> 射程範囲 </summary>
-    [SerializeField] float m_searchRangeRadius = 5f;
+    /// <summary> EnemyController </summary>
+    [SerializeField] EnemyDetector m_enemyDector = null;
     /// <summary> 弾の発射角度 </summary>
     [SerializeField] float m_shotAngle = 60.0f;
-    /// <summary> シーン上にある敵のオブジェクトの配列 </summary>
-    GameObject[] m_enemys;
     /// <summary> 一度のみ発射する </summary>
     private bool isOneShot = true;
+
+    [SerializeField] float m_shotTime = 2.0f;
+    float m_timer;
 
     void Start()
     {
@@ -33,6 +34,15 @@ public class ShotManager : MonoBehaviour
             {
                 Shot();
             }
+            if (!isOneShot)
+            {
+                m_timer += Time.deltaTime;
+                if (m_timer > m_shotTime)
+                {
+                    m_timer = 0;
+                    isOneShot = true;
+                }
+            }
         }
     }
 
@@ -42,9 +52,9 @@ public class ShotManager : MonoBehaviour
     /// <param name="targetPosition"></param>
     private void Shot()
     {
-        if (SearchEnemy() != null)
+        if (m_enemyDector.Target != null)
         {
-            Vector3 targetPos = SearchEnemy().transform.position;
+            Vector3 targetPos = m_enemyDector.Target.transform.position;
             float iniVec = InitialVelocity(targetPos);
             Vector3 vec = ConvertToVector3(iniVec, targetPos);
             InstantiateObject(vec);
@@ -114,22 +124,4 @@ public class ShotManager : MonoBehaviour
         rb.AddForce(force, ForceMode.Impulse);
     }
 
-    /// <summary>
-    /// 敵をサーチし、射程範囲内に敵がいた場合、敵のゲームオブジェクトを返す
-    /// </summary>
-    /// <returns></returns>
-    public GameObject SearchEnemy()
-    {
-        m_enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        for (int i = 0; i < m_enemys.Length; i++)
-        {
-            Vector3 enemyPos = m_enemys[i].transform.position;
-            float distance = Vector3.Distance(enemyPos, this.transform.position);
-            if (distance < m_searchRangeRadius)
-            {
-                return m_enemys[i];
-            }
-        }
-        return null;
-    }
 }
