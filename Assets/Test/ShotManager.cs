@@ -12,44 +12,8 @@ public class ShotManager : MonoBehaviour
     [SerializeField] GameObject m_shotObject = null;
     /// <summary> 弾を発射するオブジェクト </summary>
     [SerializeField] GameObject m_shoter = null;
-    /// <summary> TankController </summary>
-    [SerializeField] TankController m_tankController = null;
-    /// <summary> EnemyController </summary>
-    [SerializeField] EnemyDetector m_enemyDector = null;
     /// <summary> 弾の発射角度 </summary>
     [SerializeField] float m_shotAngle = 60.0f;
-    /// <summary> 一度のみ発射する </summary>
-    private bool isOneShot = true;
-
-    private bool isOneTimeGetTargetPos = true;
-
-    [SerializeField] float m_shotTime = 2.0f;
-    float m_timer;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        if (m_tankController.Direction == Vector3.zero)
-        {
-            if (isOneShot)
-            {
-                Shot();
-            }
-            if (!isOneShot)
-            {
-                m_timer += Time.deltaTime;
-                if (m_timer > m_shotTime)
-                {
-                    m_timer = 0;
-                    isOneShot = true;
-                }
-            }
-        }
-    }
 
     /// <summary>
     /// 弾を発射する
@@ -57,27 +21,10 @@ public class ShotManager : MonoBehaviour
     /// <param name="targetPosition"></param>
     private void Shot()
     {
-        if (m_enemyDector.Target != null)
-        {
-            Vector3 targetPos;
-            if (isOneTimeGetTargetPos)
-            {
-                targetPos = m_enemyDector.TargetPos;
-                isOneTimeGetTargetPos = false;
-            }
-            else
-            {
-                return;
-            }
-            float iniVec = InitialVelocity(targetPos);
-            Vector3 vec = ConvertToVector3(iniVec, targetPos);
-            InstantiateObject(vec);
-            isOneShot = false;
-        }
-        else
-        {
-            Debug.Log("敵を検知できませんでした。");
-        }
+        Vector3 targetPos = new Vector3(3, 0, 3); //ここにターゲットのポジションを入れる
+        float iniVec = InitialVelocity(targetPos);
+        Vector3 vec = ConvertToVector3(iniVec, targetPos);
+        InstantiateObject(vec);
     }
 
     /// <summary>

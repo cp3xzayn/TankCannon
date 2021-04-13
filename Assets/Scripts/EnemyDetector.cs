@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+///　範囲内にいる敵を検索し、一番近い敵をロックオンするクラス
+/// </summary>
 public class EnemyDetector : MonoBehaviour
 {
     /// <summary>索敵範囲</summary>
@@ -12,16 +15,8 @@ public class EnemyDetector : MonoBehaviour
     GameObject m_target = null;
     float m_timer;
 
-    public GameObject Target
-    {
-        get { return m_target; }
-    }
-
-    /// <summary> ロックオンしている敵の位置情報 </summary>
-    public Vector3 TargetPos
-    {
-        get { return m_target.transform.position; }
-    }
+    /// <summary>ロックオンしているオブジェクト</summary>
+    public GameObject Target => m_target;
 
     void Update()
     {

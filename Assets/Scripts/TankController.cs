@@ -12,7 +12,7 @@ public class TankController : MonoBehaviour
     /// <summary> 入力された方向ベクトル </summary>
     private Vector3 m_direction;
     /// <summary> 入力された方向ベクトル </summary>
-    public Vector3 Direction { get { return m_direction; } }
+    public Vector3 Direction => m_direction;
 
     void Start()
     {
