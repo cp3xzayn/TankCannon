@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "EnemyCollider")
+        if (col.gameObject.tag == "Enemy")
         {
             Debug.Log("敵に衝突");
             Destroy(this.gameObject);
