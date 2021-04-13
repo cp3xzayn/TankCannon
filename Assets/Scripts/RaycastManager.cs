@@ -54,7 +54,7 @@ public class RaycastManager : MonoBehaviour
         {
             isDecide = false;
             isMoveHitPoint = true;
-            shotManager.IsOneShot = true;
+            //shotManager.IsOneShot = true;
         }
     }
 }
