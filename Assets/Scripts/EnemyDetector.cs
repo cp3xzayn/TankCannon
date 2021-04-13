@@ -12,12 +12,15 @@ public class EnemyDetector : MonoBehaviour
     GameObject m_target = null;
     float m_timer;
 
-    /// <summary>
-    /// ロックオンしている敵を取得する
-    /// </summary>
     public GameObject Target
     {
         get { return m_target; }
+    }
+
+    /// <summary> ロックオンしている敵の位置情報 </summary>
+    public Vector3 TargetPos
+    {
+        get { return m_target.transform.position; }
     }
 
     void Update()

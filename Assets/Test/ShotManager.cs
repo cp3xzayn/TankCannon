@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/// <summary>
+/// 射法投射で弾を飛ばすためのクラス
+/// </summary>
 public class ShotManager : MonoBehaviour
 {
     /// <summary> 弾のオブジェクト </summary>
@@ -17,6 +20,8 @@ public class ShotManager : MonoBehaviour
     [SerializeField] float m_shotAngle = 60.0f;
     /// <summary> 一度のみ発射する </summary>
     private bool isOneShot = true;
+
+    private bool isOneTimeGetTargetPos = true;
 
     [SerializeField] float m_shotTime = 2.0f;
     float m_timer;
@@ -54,7 +59,16 @@ public class ShotManager : MonoBehaviour
     {
         if (m_enemyDector.Target != null)
         {
-            Vector3 targetPos = m_enemyDector.Target.transform.position;
+            Vector3 targetPos;
+            if (isOneTimeGetTargetPos)
+            {
+                targetPos = m_enemyDector.TargetPos;
+                isOneTimeGetTargetPos = false;
+            }
+            else
+            {
+                return;
+            }
             float iniVec = InitialVelocity(targetPos);
             Vector3 vec = ConvertToVector3(iniVec, targetPos);
             InstantiateObject(vec);
@@ -119,6 +133,7 @@ public class ShotManager : MonoBehaviour
     {
         GameObject obj = Instantiate(m_shotObject, m_shoter.transform.position, Quaternion.identity);
         Rigidbody rb = obj.AddComponent<Rigidbody>();
+        
         Vector3 force = shotVec * rb.mass;
 
         rb.AddForce(force, ForceMode.Impulse);
