@@ -38,8 +38,8 @@ public class TankGenerator : MonoBehaviour
     [Header("戦車の生成可能範囲の情報")]
     [SerializeField] int m_maxX = 9;
     [SerializeField] int m_minX = 1;
-    [SerializeField] int m_maxY = 7;
-    [SerializeField] int m_minZ = 4;
+    [SerializeField] int m_maxZ = 6;
+    [SerializeField] int m_minZ = 3;
     /*-----------------------------------------*/
 
     /// <summary>
@@ -79,18 +79,26 @@ public class TankGenerator : MonoBehaviour
         return tankSetPos;
     }
 
+    /// <summary>
+    /// Markerのポジションを移動する
+    /// </summary>
+    /// <param name="hitPos"></param>
     void MarkerAction(Vector3 hitPos)
     {
-        if (hitPos.x > m_minX && hitPos.x < m_maxX && hitPos.z > m_minZ && hitPos.z < m_maxY)
+        if (hitPos.x >= m_minX && hitPos.x <= m_maxX)
         {
-            m_targetMarker.SetActive(true);
-            Vector3Int setPosGrid = VectorInfo.TankSetPositionToGrid(hitPos);
-            Vector3 markerPos = new Vector3(setPosGrid.x, 0.0001f, setPosGrid.z); // TargetMarkerの座標
-            m_targetMarker.transform.position = markerPos;
+            if (hitPos.z >= m_minZ && hitPos.z <= m_maxZ)
+            {
+                m_targetMarker.SetActive(true);
+                Vector3Int setPosGrid = VectorInfo.TankSetPositionToGrid(hitPos);
+                Vector3 markerPos = new Vector3(setPosGrid.x, 0.0001f, setPosGrid.z); // TargetMarkerの座標
+                m_targetMarker.transform.position = markerPos;
+            }
         }
         else
         {
             m_targetMarker.SetActive(false);
         }
+        
     }
 }
