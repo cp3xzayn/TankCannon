@@ -8,6 +8,11 @@ public class TankGenerator : MonoBehaviour
     [SerializeField] GameObject m_tank = null;
     [SerializeField] GameObject m_targetMarker = null;
 
+    void Start()
+    {
+        m_targetMarker.SetActive(false);
+    }
+
     void Update()
     {
         if (GameManager.Instance.NowGameState == GameState.Prepare)
@@ -18,6 +23,7 @@ public class TankGenerator : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Field")
                 {
+                    MarkerAction(hit.point);
                     if (Input.GetButtonDown("Fire1"))
                     {
                         InstantiateTank(hit.point);
@@ -30,10 +36,10 @@ public class TankGenerator : MonoBehaviour
     /*-----------------------------------------*/
     // 戦車の生成可能範囲の情報
     [Header("戦車の生成可能範囲の情報")]
-    [SerializeField] int m_maxX = 5;
-    [SerializeField] int m_minX = -5;
-    [SerializeField] int m_maxY = -2;
-    [SerializeField] int m_minY = -7;
+    [SerializeField] int m_maxX = 9;
+    [SerializeField] int m_minX = 1;
+    [SerializeField] int m_maxY = 7;
+    [SerializeField] int m_minZ = 4;
     /*-----------------------------------------*/
 
     /// <summary>
@@ -46,25 +52,17 @@ public class TankGenerator : MonoBehaviour
         Vector3Int setPosGrid = VectorInfo.TankSetPositionToGrid(hitPos);
         // 設置するためにVector3に変換
         Vector3 setPos = TankSetPosition(setPosGrid);
-        // 戦車が生成可能範囲が選択されたら
-        if (hitPos.x > m_minX && hitPos.x < m_maxX && hitPos.z > m_minY && hitPos.z < m_maxY)
+        // 戦車が生成可能範囲が選択された場合（現状IndexOutOfrangeが出てしまってる　＝＞　修正する必要あり）
+        // 戦車設置可能かを判断し、可能なら戦車を生成する。
+        if (VectorInfo.mapInfo[setPosGrid.x - m_minX, setPosGrid.z - m_minZ] == 0)
         {
-            // 戦車設置可能かを判断し、可能なら戦車を生成する。
-            // TODO:最終的にマジックナンバーをなくす
-            if (VectorInfo.mapInfo[setPosGrid.x + 4, setPosGrid.z + 6] == 0)
-            {
-                VectorInfo.mapInfo[setPosGrid.x + 4, setPosGrid.z + 6] = 1;
-                GameObject obj = Instantiate(m_tank, setPos, Quaternion.identity);
-                obj.transform.parent = transform;
-            }
-            else
-            {
-                Debug.Log("すでに設置済みです。ここには設置できません。");
-            }
+            VectorInfo.mapInfo[setPosGrid.x - m_minX, setPosGrid.z - m_minZ] = 1;
+            GameObject obj = Instantiate(m_tank, setPos, Quaternion.identity);
+            obj.transform.parent = transform;
         }
         else
         {
-            Debug.Log("設置可能範囲外です。");
+            Debug.Log("すでに設置済みです。ここには設置できません。");
         }
     }
 
@@ -79,5 +77,20 @@ public class TankGenerator : MonoBehaviour
         int z = tankPosToGrid.z;
         Vector3 tankSetPos = new Vector3(x, 0.3f, z);　// 戦車の設置の高さ（0.3f）;
         return tankSetPos;
+    }
+
+    void MarkerAction(Vector3 hitPos)
+    {
+        if (hitPos.x > m_minX && hitPos.x < m_maxX && hitPos.z > m_minZ && hitPos.z < m_maxY)
+        {
+            m_targetMarker.SetActive(true);
+            Vector3Int setPosGrid = VectorInfo.TankSetPositionToGrid(hitPos);
+            Vector3 markerPos = new Vector3(setPosGrid.x, 0.0001f, setPosGrid.z); // TargetMarkerの座標
+            m_targetMarker.transform.position = markerPos;
+        }
+        else
+        {
+            m_targetMarker.SetActive(false);
+        }
     }
 }

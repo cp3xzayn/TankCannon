@@ -5,7 +5,7 @@ using UnityEngine;
 public class VectorInfo
 {
     /// <summary>
-    /// クリックされたポジションの値を四捨五入し、戦車をセットするポジションを決める
+    /// 特定の座標の値を四捨五入し、Vector3Intにして返すメソッド
     /// </summary>
     /// <param name="gridPos"></param>
     /// <returns></returns>
