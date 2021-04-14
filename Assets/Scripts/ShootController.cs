@@ -8,8 +8,6 @@ public class ShootController : MonoBehaviour
     [SerializeField] GameObject m_shotObject = null;
     /// <summary> 弾を発射するオブジェクト </summary>
     [SerializeField] GameObject m_shoter = null;
-    /// <summary> TankController </summary>
-    [SerializeField] TankController m_tankController = null;
     /// <summary> EnemyController </summary>
     [SerializeField] EnemyDetector m_enemyDector = null;
     /// <summary> 弾のスピード </summary>
@@ -23,7 +21,7 @@ public class ShootController : MonoBehaviour
 
     void Update()
     {
-        if (m_tankController.Direction == Vector3.zero)
+        if (GameManager.Instance.NowGameState == GameState.Playing)
         {
             if (isOneShot)
             {
