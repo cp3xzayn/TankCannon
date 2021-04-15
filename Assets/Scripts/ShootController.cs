@@ -27,7 +27,7 @@ public class ShootController : MonoBehaviour
             {
                 Shot();
             }
-            if (!isOneShot)
+            else
             {
                 m_timer += Time.deltaTime;
                 if (m_timer > m_shotTime)

@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.End:
                 Debug.Log("GameState.End");
+                EndAction();
                 break;
             default:
                 break;
@@ -65,8 +66,8 @@ public class GameManager : MonoBehaviour
         SetNowState(GameState.Prepare);
     }
 
-    public void PrepareAction()
+    public void EndAction()
     {
-        SetNowState(GameState.Playing);
+        SetNowState(GameState.Start);
     }
 }

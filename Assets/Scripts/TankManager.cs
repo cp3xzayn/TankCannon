@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankGenerator : MonoBehaviour
+public class TankManager : MonoBehaviour
 {
     /// <summary> 生成する戦車のオブジェクト </summary>
     [SerializeField] GameObject[] m_tank = null;
@@ -68,5 +68,11 @@ public class TankGenerator : MonoBehaviour
         // 高さが必要なため、もう一度Vector3に戻す
         Vector3 tankSetPos = new Vector3(x, 0.23f, z);　// 戦車の設置の高さ（0.23f）;
         return tankSetPos;
+    }
+
+    public void OnClickToPlayingGameState()
+    {
+        Debug.Log("設置位置を決定しました。");
+        GameManager.Instance.SetNowState(GameState.Playing);
     }
 }
