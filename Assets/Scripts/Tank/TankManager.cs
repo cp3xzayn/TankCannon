@@ -28,7 +28,7 @@ public class TankManager : MonoBehaviour
                         if (hit.collider.gameObject == m_tank[0]) m_tankIndex = 0;
                         if (hit.collider.gameObject == m_tank[1]) m_tankIndex = 1;
                         if (hit.collider.gameObject == m_tank[2]) m_tankIndex = 2;
-                        Debug.Log("戦車をつかんでいます。");
+                        Debug.Log($"戦車{m_tankIndex}をつかんでいます。");
                         isGrabbing = true;
                     }
                 }
@@ -47,6 +47,7 @@ public class TankManager : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0)) // 右クリックを離したら
                 {
+                    Debug.Log($"戦車{m_tankIndex}を離しました.");
                     isGrabbing = false;
                 }
             }
