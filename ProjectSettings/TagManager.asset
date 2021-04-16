@@ -8,6 +8,8 @@ TagManager:
   - Field
   - Bullet
   - Tank
+  - BGMSlider
+  - SESlider
   layers:
   - Default
   - TransparentFX

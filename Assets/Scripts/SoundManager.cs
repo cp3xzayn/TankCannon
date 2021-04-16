@@ -6,22 +6,19 @@ using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     /// <summary> BGMSliderのGameObject </summary>
-    [SerializeField] GameObject m_bGMSliderObj = null;
+    GameObject m_bGMSliderObj = null;
     /// <summary> SESliderのGameObject </summary>
-    [SerializeField] GameObject m_sESliderObj = null;
+    GameObject m_sESliderObj = null;
     /// <summary> BGMSlider </summary>
-    [SerializeField] Slider m_bGMSlider = null;
+    Slider m_bGMSlider;
     /// <summary> SESlider </summary>
-    [SerializeField] Slider m_sESlider = null;
+    Slider m_sESlider;
     AudioSource m_audioSource;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);    
-    }
 
     void Start()
     {
+        m_bGMSliderObj = FindChieldGameObject(this.gameObject, "BGMSlider");
+        m_sESliderObj = FindChieldGameObject(this.gameObject, "SESlider");
         m_bGMSlider = m_bGMSliderObj.GetComponent<Slider>();
         m_sESlider = m_sESliderObj.GetComponent<Slider>();
         m_audioSource = GetComponent<AudioSource>();
@@ -33,10 +30,31 @@ public class SoundManager : MonoBehaviour
         Sound.SEVolume = m_sESlider.value;
     }
 
-    /// <summary> BGMの音量をセットする関数 </summary>
+    /// <summary> BGMの音量をセットする関数</summary>
     void SetBGMVolume()
     {
         Sound.BGMVolume = m_bGMSlider.value;
         m_audioSource.volume = Sound.BGMVolume;
+    }
+
+    /// <summary>
+    /// アタッチされたGameObjectの子オブジェクトを検索し、指定したTagのGameObjectを返すメソッド
+    /// </summary>
+    /// <param name="obj">検索対象のゲームオブジェクト</param>
+    /// <param name="tag">検索したいtag</param>
+    /// <param name="includeInactive">非アクティブのオブジェクトを検索する場合はtrueにする</param>
+    /// <returns></returns>
+    GameObject FindChieldGameObject(GameObject obj, string tag, bool includeInactive = false)
+    {
+        var children = obj.GetComponentsInChildren<Transform>(includeInactive);
+        foreach (var transform in children)
+        {
+            if (transform.gameObject.tag == tag)
+            {
+                return transform.gameObject;
+            }
+        }
+
+        return null;
     }
 }
