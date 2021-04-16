@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -10,18 +11,27 @@ public class SoundManager : MonoBehaviour
     /// <summary> SESliderのGameObject </summary>
     GameObject m_sESliderObj = null;
     /// <summary> BGMSlider </summary>
-    Slider m_bGMSlider;
+    Slider m_bGMSlider = null;
     /// <summary> SESlider </summary>
-    Slider m_sESlider;
+    Slider m_sESlider = null;
+    /// <summary> SoundSetting画面を開くボタン </summary>
+    Button m_soundSettingOpen = null;
+    /// <summary> SoundSetting画面を閉じるボタン </summary>
+    Button m_soundSettingClose = null;
+    /// <summary> Startボタンなど、1シーンのみで必要なCanvas </summary>
+    GameObject m_baseCanvas = null;
     AudioSource m_audioSource;
 
     void Start()
     {
         m_bGMSliderObj = FindChieldGameObject(this.gameObject, "BGMSlider");
         m_sESliderObj = FindChieldGameObject(this.gameObject, "SESlider");
+        m_baseCanvas = GameObject.FindWithTag("BaseCanvas");
         m_bGMSlider = m_bGMSliderObj.GetComponent<Slider>();
         m_sESlider = m_sESliderObj.GetComponent<Slider>();
         m_audioSource = GetComponent<AudioSource>();
+        SubcribeAddListener(m_soundSettingOpen, "SoundSettingOpen", false);
+        SubcribeAddListener(m_soundSettingClose, "SoundSettingClose", true);
     }
 
     void Update()
@@ -41,7 +51,7 @@ public class SoundManager : MonoBehaviour
     /// アタッチされたGameObjectの子オブジェクトを検索し、指定したTagのGameObjectを返すメソッド
     /// </summary>
     /// <param name="obj">検索対象のゲームオブジェクト</param>
-    /// <param name="tag">検索したいtag</param>
+    /// <param name="tag">検索するためのTag</param>
     /// <param name="includeInactive">非アクティブのオブジェクトを検索する場合はtrueにする</param>
     /// <returns></returns>
     GameObject FindChieldGameObject(GameObject obj, string tag, bool includeInactive = false)
@@ -56,5 +66,29 @@ public class SoundManager : MonoBehaviour
         }
 
         return null;
+    }
+    
+   /// <summary>
+   /// Buttonに関数をAddListenerするメソッド
+   /// </summary>
+   /// <param name="button">AddListenerするButton</param>
+   /// <param name="tag">検索するためのTag</param>
+   /// <param name="isBaseCanvasOpen">BaseCanvasを表示するかしないか</param>
+    void SubcribeAddListener(Button button, string tag, bool isBaseCanvasOpen)
+    {
+        button = FindChieldGameObject(this.gameObject, tag).GetComponent<Button>();
+        button.onClick.AddListener(() => SoundSettingOpenOrClose(isBaseCanvasOpen));
+    }
+
+    /// <summary>
+    /// SoundSettingが開いてるかどうかを判定し、BaseCanvasを表示、非表示を切り替える
+    /// </summary>
+    /// <param name="isBaseCanvasOpen"></param>
+    void SoundSettingOpenOrClose(bool isBaseCanvasOpen)
+    {
+        if (m_baseCanvas != null)
+        {
+            m_baseCanvas.SetActive(isBaseCanvasOpen);
+        }
     }
 }

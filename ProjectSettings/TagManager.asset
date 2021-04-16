@@ -10,6 +10,9 @@ TagManager:
   - Tank
   - BGMSlider
   - SESlider
+  - SoundSettingOpen
+  - SoundSettingClose
+  - BaseCanvas
   layers:
   - Default
   - TransparentFX
