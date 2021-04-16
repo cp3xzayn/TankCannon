@@ -28,13 +28,16 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.NowGameState == GameState.Start) IndicateWave();
-        if (GameManager.Instance.NowGameState == GameState.End)
-        {
-            m_wave++;
-            GameManager.Instance.SetNowState(GameState.Start);
-        }
+        if (GameManager.Instance.NowGameState == GameState.End) GoNextWave();
+    }
 
-        Debug.Log(m_wave);
+    /// <summary>
+    /// Waveが次に進んだ時の処理
+    /// </summary>
+    public void GoNextWave()
+    {
+        m_wave++;
+        GameManager.Instance.SetNowState(GameState.Start);
     }
 
     /// <summary> Textで現在のWaveを表示する </summary>
