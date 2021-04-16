@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootController : MonoBehaviour
 {
     /// <summary> 弾のオブジェクト </summary>
-    [SerializeField] GameObject m_shotObject = null;
+    GameObject m_shotObject = null;
     /// <summary> 弾を発射するオブジェクト </summary>
     [SerializeField] GameObject m_shoter = null;
     /// <summary> EnemyController </summary>
@@ -18,6 +18,11 @@ public class ShootController : MonoBehaviour
     /// <summary> 弾の生成間隔 </summary>
     [SerializeField] float m_shotTime = 2.0f;
     float m_timer;
+
+    void Start()
+    {
+        m_shotObject = Resources.Load<GameObject>("Bullet");
+    }
 
     void Update()
     {

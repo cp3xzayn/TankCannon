@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     private GameState m_nowGameState;
     /// <summary> 現在の状態 </summary>
     public GameState NowGameState => m_nowGameState;
-
     void Awake()
     {
         Instance = this;
@@ -56,20 +55,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.End:
                 Debug.Log("GameState.End");
-                EndAction();
                 break;
             default:
                 break;
         }
-    }
-
-    public void StartAction()
-    {
-        SetNowState(GameState.Prepare);
-    }
-
-    public void EndAction()
-    {
-        SetNowState(GameState.Start);
     }
 }

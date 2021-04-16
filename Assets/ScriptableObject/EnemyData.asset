@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d78b6b0351bbe438abd830b22f8e5c, type: 3}
-  m_Name: WaveData
+  m_Script: {fileID: 11500000, guid: 12c1a6ad05d03bd4799bee7879c6a428, type: 3}
+  m_Name: EnemyData
   m_EditorClassIdentifier: 
-  m_wave: 1
-  m_enemySpeed: []
+  m_enemyHP: 0100000002000000
+  m_enemySpeed:
+  - 0.5
+  - 1

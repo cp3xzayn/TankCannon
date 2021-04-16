@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 0.5
+  m_enemyData: {fileID: 11400000, guid: 24f0bbd76bcaea647aae51bca871e554, type: 2}
 --- !u!195 &6669522048855156286
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     /// <summary> 敵のGameObject </summary>
-    [SerializeField] GameObject m_enemy = null;
+    GameObject m_enemy = null;
     /// <summary> 敵の生成ポジションの配列 </summary>
     [SerializeField] GameObject[] m_generatePoint = null;
     /// <summary> 敵の生成間隔 </summary>
@@ -15,6 +15,11 @@ public class EnemyGenerator : MonoBehaviour
     /// <summary> 敵生成のコルーチンを一度だけ始めさせる </summary>
     private bool isGenerateStart = true;
     float m_timer;
+
+    void Start()
+    {
+        m_enemy = Resources.Load<GameObject>("Enemy");
+    }
 
     void Update()
     {
