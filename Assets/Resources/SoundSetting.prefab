@@ -137,7 +137,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -348,7 +348,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -712,7 +712,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Close
+  m_Text: "\u9589\u3058\u308B"
 --- !u!1 &3187585908536077525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1183,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sound
+  m_Text: "\u8A2D\u5B9A"
 --- !u!1 &3187585908959514639
 GameObject:
   m_ObjectHideFlags: 0

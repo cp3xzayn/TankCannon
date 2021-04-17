@@ -1647,7 +1647,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -1659,7 +1659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: No
+  m_Text: "\u3044\u3044\u3048"
 --- !u!222 &392579071
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2267,7 +2267,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -2279,7 +2279,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Decide
+  m_Text: "\u6C7A\u5B9A"
 --- !u!222 &621035854
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3264,7 +3264,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -3276,7 +3276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yes
+  m_Text: "\u306F\u3044"
 --- !u!222 &784843172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6607,7 +6607,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
@@ -8755,11 +8755,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
-    m_FontSize: 70
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -8767,7 +8767,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Is it okay here?
+  m_Text: "\u6226\u8ECA\u306E\u4F4D\u7F6E\u3092\u6C7A\u5B9A\u3057\u307E\u3059\u304B\uFF1F"
 --- !u!222 &1750768231
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 565942783}
   - component: {fileID: 565942782}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27991363a790f144abff4df5a5a76d32, type: 3}
+    m_Font: {fileID: 12800000, guid: 29fad115f72a7064ea454c343318422f, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -1210,7 +1210,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: "\u30B9\u30BF\u30FC\u30C8"
 --- !u!222 &678413491
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1631,7 +1631,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15296
+  m_Name: pb_Mesh70350
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
