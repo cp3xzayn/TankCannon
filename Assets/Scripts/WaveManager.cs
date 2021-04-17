@@ -49,7 +49,11 @@ public class WaveManager : MonoBehaviour
             m_drawLineOnTankRange.SetActive(false);
             m_confirmButton.transform.localScale = Vector3.zero;
         }
-        if (GameManager.Instance.NowGameState == GameState.End) GoNextWave();
+        if (GameManager.Instance.NowGameState == GameState.End)
+        {
+            DestoryEnemies();
+            GoNextWave();
+        }
     }
 
     /// <summary>
@@ -59,6 +63,18 @@ public class WaveManager : MonoBehaviour
     {
         m_wave++;
         GameManager.Instance.SetNowState(GameState.Start);
+    }
+
+    /// <summary>
+    /// GameStateがEndになった時、Fieldに敵がいた場合見つけ、破壊する
+    /// </summary>
+    public void DestoryEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 
     /// <summary> Textで現在のWaveを表示する </summary>
@@ -81,6 +97,9 @@ public class WaveManager : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// 準備フェーズからプレイフェーズに進む
+    /// </summary>
     public void OnClickPlayingFromPrepare()
     {
         if (GameManager.Instance.NowGameState == GameState.Prepare)

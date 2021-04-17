@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour
         m_meshAgent.velocity = Vector3.one * m_speed; //敵の移動速度を設定する
     }
 
-
     void Update()
     {
         m_meshAgent.destination = m_target.transform.position;
