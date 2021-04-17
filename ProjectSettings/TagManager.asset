@@ -13,6 +13,7 @@ TagManager:
   - SoundSettingOpen
   - SoundSettingClose
   - BaseCanvas
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

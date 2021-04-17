@@ -8,7 +8,8 @@ public enum GameState
     Start,
     Prepare,
     Playing,
-    End
+    End,
+    GameOver
 }
 
 public class GameManager : MonoBehaviour
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.End:
                 Debug.Log("GameState.End");
+                break;
+            case GameState.GameOver:
+                Debug.Log("GameState.GameOver");
                 break;
             default:
                 break;

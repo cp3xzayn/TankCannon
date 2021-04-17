@@ -21,11 +21,16 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject m_confirmButton = null;
     /// <summary> Wave数を表示するText </summary>
     Text m_waveStartText;
+    /// <summary> GameOverを表示するGameObject </summary>
+    [SerializeField] GameObject m_gameOverTextObj = null;
+    Animator m_gameOverAnimator;
+    /// <summary> 戦車の移動可能範囲に線を引くGameObject </summary>
     [SerializeField] GameObject m_drawLineOnTankRange = null;
 
     void Start()
     {
         m_waveStartText = m_waveStartObj.GetComponent<Text>();
+        m_gameOverAnimator = m_gameOverTextObj.GetComponent<Animator>();
     }
 
     void Update()
@@ -53,6 +58,10 @@ public class WaveManager : MonoBehaviour
         {
             DestoryEnemies();
             GoNextWave();
+        }
+        if (GameManager.Instance.NowGameState == GameState.GameOver)
+        {
+            m_gameOverAnimator.Play("ZoomIn");
         }
     }
 
@@ -98,7 +107,7 @@ public class WaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 準備フェーズからプレイフェーズに進む
+    /// 準備フェーズからプレイPhaseに進む
     /// </summary>
     public void OnClickPlayingFromPrepare()
     {

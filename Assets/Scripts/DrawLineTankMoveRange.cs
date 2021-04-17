@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 戦車の設置可能範囲に線を引くクラス
+/// </summary>
 public class DrawLineTankMoveRange : MonoBehaviour
 {
     /// <summary> 戦車の設置可能領域 </summary>

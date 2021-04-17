@@ -22,9 +22,9 @@ public class VectorInfo
         float ceilXDif = ceilX - clickPosition.x;
         float ceilZDif = ceilZ - clickPosition.x;
 
-        if (floorXDif > ceilXDif)
+        if (floorXDif >= ceilXDif)
         {
-            if (floorZDif > ceilZDif)
+            if (floorZDif >= ceilZDif)
             {
                 int x = ceilX;
                 int z = ceilZ;
@@ -39,7 +39,7 @@ public class VectorInfo
         }
         else
         {
-            if (floorZDif > ceilZDif)
+            if (floorZDif >= ceilZDif)
             {
                 int x = floorX;
                 int z = ceilZ;
