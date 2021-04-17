@@ -23,12 +23,21 @@ public class WaveManager : MonoBehaviour
     Text m_waveStartText;
     /// <summary> GameOverを表示するGameObject </summary>
     [SerializeField] GameObject m_gameOverTextObj = null;
+    /// <summary> GameOverTextを表示するAnimator </summary>
     Animator m_gameOverAnimator;
+    /// <summary> Titleに戻るボタン </summary>
+    [SerializeField] GameObject m_backToTitleButtonObj = null;
+    Button m_backToTitleButton;
     /// <summary> 戦車の移動可能範囲に線を引くGameObject </summary>
     [SerializeField] GameObject m_drawLineOnTankRange = null;
+    /// <summary> Buttonに一度だけAddListenerするためのbool </summary>
+    bool isOneTimeSet = true;
+
+    SceneLoadManager m_sceneLoadManager;
 
     void Start()
     {
+        m_sceneLoadManager = FindObjectOfType<SceneLoadManager>();
         m_waveStartText = m_waveStartObj.GetComponent<Text>();
         m_gameOverAnimator = m_gameOverTextObj.GetComponent<Animator>();
     }
@@ -54,35 +63,37 @@ public class WaveManager : MonoBehaviour
             m_drawLineOnTankRange.SetActive(false);
             m_confirmButton.transform.localScale = Vector3.zero;
         }
-        if (GameManager.Instance.NowGameState == GameState.End)
-        {
-            DestoryEnemies();
-            GoNextWave();
-        }
-        if (GameManager.Instance.NowGameState == GameState.GameOver)
-        {
-            m_gameOverAnimator.Play("ZoomIn");
-        }
+        if (GameManager.Instance.NowGameState == GameState.End) GameStateEnd();
+        if (GameManager.Instance.NowGameState == GameState.GameOver) GameStateGameOver();
     }
 
     /// <summary>
-    /// Waveが次に進んだ時の処理
+    /// GameStateがEndになったときの処理
     /// </summary>
-    public void GoNextWave()
+    void GameStateEnd()
     {
-        m_wave++;
-        GameManager.Instance.SetNowState(GameState.Start);
-    }
-
-    /// <summary>
-    /// GameStateがEndになった時、Fieldに敵がいた場合見つけ、破壊する
-    /// </summary>
-    public void DestoryEnemies()
-    {
+        //Fieldに敵がいた場合見つけ、破壊する
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var enemy in enemies)
         {
             Destroy(enemy);
+        }
+        m_wave++; // Waveを増やす
+        GameManager.Instance.SetNowState(GameState.Start);
+    }
+
+    /// <summary>
+    /// GameStateがGameOverになったときの処理
+    /// </summary>
+    void GameStateGameOver()
+    {
+        m_gameOverAnimator.Play("ZoomIn");
+        m_backToTitleButtonObj.SetActive(true);
+        m_backToTitleButton = m_backToTitleButtonObj.GetComponent<Button>();
+        if (isOneTimeSet)
+        {
+            m_backToTitleButton.onClick.AddListener(() => m_sceneLoadManager.OnClickToTitle());
+            isOneTimeSet = false;
         }
     }
 
