@@ -17,6 +17,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] float m_indicateTime = 2;
     /// <summary> Wave数を表示するGameObject </summary>
     [SerializeField] GameObject m_waveStartObj = null;
+    /// <summary> 戦車の設置位置を決定するためのボタン </summary>
+    [SerializeField] GameObject m_confirmButton = null;
     /// <summary> Wave数を表示するText </summary>
     Text m_waveStartText;
 
@@ -27,7 +29,23 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
+        DoInThisGameState();
+    }
+
+    /// <summary>
+    /// GameStateに応じて処理をする関数
+    /// </summary>
+    void DoInThisGameState()
+    {
         if (GameManager.Instance.NowGameState == GameState.Start) IndicateWave();
+        if (GameManager.Instance.NowGameState == GameState.Prepare)
+        {
+            m_confirmButton.transform.localScale = Vector3.one;
+        }
+        else
+        {
+            m_confirmButton.transform.localScale = Vector3.zero;
+        }
         if (GameManager.Instance.NowGameState == GameState.End) GoNextWave();
     }
 
@@ -58,5 +76,13 @@ public class WaveManager : MonoBehaviour
         m_waveStartObj.transform.localScale = Vector3.zero; //Scaleを0にして非表示にする
         GameManager.Instance.SetNowState(GameState.Prepare); //GameStateをPrepareにする
         yield break;
+    }
+
+    public void OnClickPlayingFromPrepare()
+    {
+        if (GameManager.Instance.NowGameState == GameState.Prepare)
+        {
+            GameManager.Instance.SetNowState(GameState.Playing);
+        }
     }
 }
