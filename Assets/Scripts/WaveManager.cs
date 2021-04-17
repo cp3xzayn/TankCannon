@@ -21,6 +21,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject m_confirmButton = null;
     /// <summary> Wave数を表示するText </summary>
     Text m_waveStartText;
+    [SerializeField] GameObject m_drawLineOnTankRange = null;
 
     void Start()
     {
@@ -40,10 +41,12 @@ public class WaveManager : MonoBehaviour
         if (GameManager.Instance.NowGameState == GameState.Start) IndicateWave();
         if (GameManager.Instance.NowGameState == GameState.Prepare)
         {
+            m_drawLineOnTankRange.SetActive(true);
             m_confirmButton.transform.localScale = Vector3.one;
         }
         else
         {
+            m_drawLineOnTankRange.SetActive(false);
             m_confirmButton.transform.localScale = Vector3.zero;
         }
         if (GameManager.Instance.NowGameState == GameState.End) GoNextWave();
