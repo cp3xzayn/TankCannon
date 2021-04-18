@@ -13,6 +13,8 @@ public class WaveManager : MonoBehaviour
         set { m_wave = value; }
         get { return m_wave; }
     }
+    /// <summary> GameClearのWave数 </summary>
+    [SerializeField] int m_maxWave = 5;
     /// <summary> WaveTextの表示時間 </summary>
     [SerializeField] float m_indicateTime = 2;
     /// <summary> Wave数を表示するGameObject </summary>
@@ -25,6 +27,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject m_gameOverTextObj = null;
     /// <summary> GameOverTextを表示するAnimator </summary>
     Animator m_gameOverAnimator;
+    /// <summary> GameClearを表示するGameObject </summary>
+    [SerializeField] GameObject m_gameClearTextObj = null;
+    /// <summary> GameClearTextを表示するAnimator </summary>
+    Animator m_gameClearAnimator;
     /// <summary> Titleに戻るボタン </summary>
     [SerializeField] GameObject m_backToTitleButtonObj = null;
     Button m_backToTitleButton;
@@ -32,7 +38,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject m_drawLineOnTankRange = null;
     /// <summary> Buttonに一度だけAddListenerするためのbool </summary>
     bool isOneTimeSet = true;
-
+    /// <summary> SceneLoadManager </summary>
     SceneLoadManager m_sceneLoadManager;
 
     void Start()
@@ -40,6 +46,7 @@ public class WaveManager : MonoBehaviour
         m_sceneLoadManager = FindObjectOfType<SceneLoadManager>();
         m_waveStartText = m_waveStartObj.GetComponent<Text>();
         m_gameOverAnimator = m_gameOverTextObj.GetComponent<Animator>();
+        m_gameClearAnimator = m_gameClearTextObj.GetComponent<Animator>();
     }
 
     void Update()
@@ -65,6 +72,7 @@ public class WaveManager : MonoBehaviour
         }
         if (GameManager.Instance.NowGameState == GameState.End) GameStateEnd();
         if (GameManager.Instance.NowGameState == GameState.GameOver) GameStateGameOver();
+        if (GameManager.Instance.NowGameState == GameState.Finish) GameStateGameClear();
     }
 
     /// <summary>
@@ -78,8 +86,10 @@ public class WaveManager : MonoBehaviour
         {
             Destroy(enemy);
         }
+        // 現在のWave数に応じて処理変える
+        if (m_wave < m_maxWave) GameManager.Instance.SetNowState(GameState.Start);
+        else GameManager.Instance.SetNowState(GameState.Finish);
         m_wave++; // Waveを増やす
-        GameManager.Instance.SetNowState(GameState.Start);
     }
 
     /// <summary>
@@ -88,6 +98,21 @@ public class WaveManager : MonoBehaviour
     void GameStateGameOver()
     {
         m_gameOverAnimator.Play("ZoomIn");
+        m_backToTitleButtonObj.SetActive(true);
+        m_backToTitleButton = m_backToTitleButtonObj.GetComponent<Button>();
+        if (isOneTimeSet)
+        {
+            m_backToTitleButton.onClick.AddListener(() => m_sceneLoadManager.OnClickToTitle());
+            isOneTimeSet = false;
+        }
+    }
+
+    /// <summary>
+    /// GameStateがFinishになったときの処理
+    /// </summary>
+    void GameStateGameClear()
+    {
+        m_gameClearAnimator.Play("ZoomIn");
         m_backToTitleButtonObj.SetActive(true);
         m_backToTitleButton = m_backToTitleButtonObj.GetComponent<Button>();
         if (isOneTimeSet)
