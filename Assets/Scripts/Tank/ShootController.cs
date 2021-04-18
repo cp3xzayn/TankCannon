@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 戦車(Player)と弾の発射に関するクラス
+/// </summary>
 public class ShootController : MonoBehaviour
 {
     /// <summary> 弾のオブジェクト </summary>
     GameObject m_shootObject = null;
     /// <summary> 弾を発射するオブジェクト </summary>
     [SerializeField] GameObject m_shooter = null;
-    /// <summary> EnemyController </summary>
+    /// <summary> EnemyDetector </summary>
     [SerializeField] EnemyDetector m_enemyDector = null;
+    /// <summary> 戦車の上の部分のGameObject</summary>
+    [SerializeField] GameObject m_tankTower = null;
     /// <summary> 弾のスピード </summary>
     [SerializeField] float m_shootVelocity = 5f;
 
@@ -52,6 +57,7 @@ public class ShootController : MonoBehaviour
         if (m_enemyDector.Target != null)
         {
             Vector3 targetPos = m_enemyDector.Target.transform.position;
+            m_tankTower.transform.LookAt(targetPos);// 戦車の上部を敵の方向に向ける
             Vector3 vec = GetVeCtor3ToTarget(targetPos);
             InstantiateBullet(vec);
             isOneShoot = false;
@@ -83,6 +89,7 @@ public class ShootController : MonoBehaviour
     private void InstantiateBullet(Vector3 shootVec)
     {
         GameObject obj = Instantiate(m_shootObject, m_shooter.transform.position, Quaternion.identity);
+        obj.transform.parent = transform; //弾を戦車の子オブジェクトにする
         Rigidbody rb = obj.AddComponent<Rigidbody>();
 
         Vector3 force = shootVec * rb.mass;

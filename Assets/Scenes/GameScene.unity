@@ -1375,7 +1375,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh321840
+  m_Name: pb_Mesh383126
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2134,6 +2134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shooter: {fileID: 1267240528}
   m_enemyDector: {fileID: 549282656}
+  m_tankTower: {fileID: 204428581}
   m_shootVelocity: 20
   m_shootTime: 2
 --- !u!114 &549282656
@@ -5518,6 +5519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shooter: {fileID: 369393074}
   m_enemyDector: {fileID: 1058738187}
+  m_tankTower: {fileID: 920533645}
   m_shootVelocity: 20
   m_shootTime: 2
 --- !u!114 &1058738187
@@ -11859,6 +11861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shooter: {fileID: 8713679270991787844}
   m_enemyDector: {fileID: 7560885653466522085}
+  m_tankTower: {fileID: 8820519451369767627}
   m_shootVelocity: 20
   m_shootTime: 2
 --- !u!114 &7560885653466522085

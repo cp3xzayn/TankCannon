@@ -58,6 +58,7 @@ public class EnemyController : MonoBehaviour
     {
         m_meshAgent = GetComponent<NavMeshAgent>();
         m_target = GameObject.FindGameObjectWithTag("Player");
+        this.gameObject.transform.LookAt(m_target.transform); // 敵を拠点方向に向ける
         m_shotObject = Resources.Load<GameObject>("EnemyBullet");
         m_waveManager = FindObjectOfType<WaveManager>();
         m_wave = m_waveManager.Wave;

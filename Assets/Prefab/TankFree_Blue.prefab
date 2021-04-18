@@ -554,12 +554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b55a76822388a34e8a1e157f0ff3ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shotObject: {fileID: 4287554638749539770, guid: 9faa795353349a749ae1acb19450570e,
-    type: 3}
-  m_shoter: {fileID: 7022365838265777615}
+  m_shooter: {fileID: 0}
   m_enemyDector: {fileID: 8175415229685246830}
   m_shootVelocity: 20
-  m_shotTime: 2
+  m_shootTime: 2
 --- !u!1 &8219373063576744137
 GameObject:
   m_ObjectHideFlags: 0
