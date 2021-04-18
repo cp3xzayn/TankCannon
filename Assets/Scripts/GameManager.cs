@@ -6,6 +6,7 @@ using UnityEngine;
 public enum GameState
 {
     Start,
+    SkillTime,
     Prepare,
     Playing,
     End,
@@ -48,6 +49,9 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Start:
                 Debug.Log("GameState.Start");
+                break;
+            case GameState.SkillTime:
+                Debug.Log("GameState.SkillTime");
                 break;
             case GameState.Prepare:
                 Debug.Log("GameState.Prepare");

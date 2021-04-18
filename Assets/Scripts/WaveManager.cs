@@ -23,6 +23,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject m_confirmButton = null;
     /// <summary> Wave数を表示するText </summary>
     Text m_waveStartText;
+
+    [SerializeField] GameObject m_skillPanelObj = null;
+    Animator m_skillPanelAnimator;
     /// <summary> GameOverを表示するGameObject </summary>
     [SerializeField] GameObject m_gameOverTextObj = null;
     /// <summary> GameOverTextを表示するAnimator </summary>
@@ -45,6 +48,7 @@ public class WaveManager : MonoBehaviour
     {
         m_sceneLoadManager = FindObjectOfType<SceneLoadManager>();
         m_waveStartText = m_waveStartObj.GetComponent<Text>();
+        m_skillPanelAnimator = m_skillPanelObj.GetComponent<Animator>();
         m_gameOverAnimator = m_gameOverTextObj.GetComponent<Animator>();
         m_gameClearAnimator = m_gameClearTextObj.GetComponent<Animator>();
     }
@@ -60,6 +64,8 @@ public class WaveManager : MonoBehaviour
     void DoInThisGameState()
     {
         if (GameManager.Instance.NowGameState == GameState.Start) IndicateWave();
+        if (GameManager.Instance.NowGameState == GameState.SkillTime) GameStateSkillTime();
+
         if (GameManager.Instance.NowGameState == GameState.Prepare)
         {
             m_drawLineOnTankRange.SetActive(true);
@@ -73,6 +79,14 @@ public class WaveManager : MonoBehaviour
         if (GameManager.Instance.NowGameState == GameState.End) GameStateEnd();
         if (GameManager.Instance.NowGameState == GameState.GameOver) GameStateGameOver();
         if (GameManager.Instance.NowGameState == GameState.Finish) GameStateGameClear();
+    }
+
+    /// <summary>
+    /// GameStateがSkillTimeの時の処理
+    /// </summary>
+    void GameStateSkillTime()
+    {
+        m_skillPanelAnimator.Play("ZoomIn");
     }
 
     /// <summary>
@@ -138,8 +152,20 @@ public class WaveManager : MonoBehaviour
         m_waveStartObj.transform.localScale = Vector3.one; //Scaleを1にして表示する
         yield return new WaitForSeconds(m_indicateTime);
         m_waveStartObj.transform.localScale = Vector3.zero; //Scaleを0にして非表示にする
-        GameManager.Instance.SetNowState(GameState.Prepare); //GameStateをPrepareにする
+        GameManager.Instance.SetNowState(GameState.SkillTime); //GameStateをPrepareにする
         yield break;
+    }
+
+    /*--------------------------------------------------------------------*/
+    // ↓以下ボタンに設定している関数
+    /*--------------------------------------------------------------------*/
+
+    /// <summary>
+    /// スキル画面が閉じられた時の処理
+    /// </summary>
+    public void OnClickCloseSkill()
+    {
+        GameManager.Instance.SetNowState(GameState.Prepare);
     }
 
     /// <summary>
@@ -152,4 +178,5 @@ public class WaveManager : MonoBehaviour
             GameManager.Instance.SetNowState(GameState.Playing);
         }
     }
+
 }
