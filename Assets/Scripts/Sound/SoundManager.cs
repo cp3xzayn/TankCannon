@@ -47,6 +47,7 @@ public class SoundManager : MonoBehaviour
         m_audioSource.volume = Sound.BGMVolume;
     }
 
+
     /// <summary>
     /// アタッチされたGameObjectの子オブジェクトを検索し、指定したTagのGameObjectを返すメソッド
     /// </summary>
