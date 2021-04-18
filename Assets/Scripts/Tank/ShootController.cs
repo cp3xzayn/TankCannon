@@ -16,7 +16,7 @@ public class ShootController : MonoBehaviour
     /// <summary> 戦車の上の部分のGameObject</summary>
     [SerializeField] GameObject m_tankTower = null;
     /// <summary> 弾のスピード </summary>
-    [SerializeField] float m_shootVelocity = 5f;
+    [SerializeField] float m_shootVelocity = 50f;
 
     /// <summary> 弾を一度のみ発射する </summary>
     private bool isOneShoot = true;

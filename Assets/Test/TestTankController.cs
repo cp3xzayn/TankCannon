@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankController : MonoBehaviour
+public class TestTankController : MonoBehaviour
 {
     /// <summary> 戦車のスピード </summary>
     [SerializeField] float m_speed = 2;

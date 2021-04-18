@@ -17,14 +17,19 @@ public class WaveManager : MonoBehaviour
     [SerializeField] int m_maxWave = 5;
     /// <summary> WaveTextの表示時間 </summary>
     [SerializeField] float m_indicateTime = 2;
+
+    /*----------------------------------------------------------------*/
+    // GameObjectの設定
+    /*----------------------------------------------------------------*/
     /// <summary> Wave数を表示するGameObject </summary>
     [SerializeField] GameObject m_waveStartObj = null;
     /// <summary> 戦車の設置位置を決定するためのボタン </summary>
     [SerializeField] GameObject m_confirmButton = null;
     /// <summary> Wave数を表示するText </summary>
     Text m_waveStartText;
-
+    /// <summary> Skillを選択するPanelのGameObject </summary>
     [SerializeField] GameObject m_skillPanelObj = null;
+    /// <summary> Skillを選択するPanelのAnimator </summary>
     Animator m_skillPanelAnimator;
     /// <summary> GameOverを表示するGameObject </summary>
     [SerializeField] GameObject m_gameOverTextObj = null;
@@ -39,6 +44,8 @@ public class WaveManager : MonoBehaviour
     Button m_backToTitleButton;
     /// <summary> 戦車の移動可能範囲に線を引くGameObject </summary>
     [SerializeField] GameObject m_drawLineOnTankRange = null;
+
+
     /// <summary> Buttonに一度だけAddListenerするためのbool </summary>
     bool isOneTimeSet = true;
     /// <summary> SceneLoadManager </summary>
