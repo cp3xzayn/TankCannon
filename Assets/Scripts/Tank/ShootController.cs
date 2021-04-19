@@ -16,21 +16,28 @@ public class ShootController : MonoBehaviour
     /// <summary> 戦車の上の部分のGameObject</summary>
     [SerializeField] GameObject m_tankTower = null;
     /// <summary> 弾のスピード </summary>
-    [SerializeField] float m_shootVelocity = 50f;
-
+    [SerializeField] float m_shootVelocity;
+    /// <summary> 弾の生成間隔 </summary>
+    [SerializeField] float m_shootTime;
+    float m_timer;
     /// <summary> 弾を一度のみ発射する </summary>
     private bool isOneShoot = true;
-    /// <summary> 弾の生成間隔 </summary>
-    [SerializeField] float m_shootTime = 2.0f;
-    float m_timer;
+    /// <summary> ステータスを一度だけ設定するためのbool </summary>
+    private bool isOneTimeSet;
+    
 
     void Start()
     {
         m_shootObject = Resources.Load<GameObject>("Bullet");
+        // 各ステータスを初期化
+        m_shootVelocity = TankStatus.ShootVelocity;
+        m_shootTime = TankStatus.ShootTime;
     }
 
     void Update()
     {
+        if (GameManager.Instance.NowGameState == GameState.Start) isOneTimeSet = true;
+        if (GameManager.Instance.NowGameState == GameState.Prepare) SetTankStatusOneTime();
         if (GameManager.Instance.NowGameState == GameState.Playing)
         {
             if (isOneShoot)
@@ -46,6 +53,21 @@ public class ShootController : MonoBehaviour
                     isOneShoot = true;
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// GameState.Prepareになったとき一度だけ各ステータスを設定する
+    /// </summary>
+    void SetTankStatusOneTime()
+    {
+        if (isOneTimeSet)
+        {
+            m_shootVelocity = TankStatus.ShootVelocity;
+            m_shootTime = TankStatus.ShootTime;
+            Debug.Log($"射程範囲{m_shootVelocity}");
+            Debug.Log($"生成間隔{m_shootTime}");
+            isOneTimeSet = false;
         }
     }
 
@@ -97,3 +119,36 @@ public class ShootController : MonoBehaviour
         rb.AddForce(force, ForceMode.Impulse);
     }
 }
+
+/// <summary>
+/// 戦車の情報を保持しているクラス
+/// </summary>
+public static class TankStatus
+{
+    /// <summary> 弾のダメージ </summary>
+    static int m_bulletDamage = 1;
+    /// <summary> 弾のダメージ </summary>
+    public static int BulletDamage
+    {
+        set { m_bulletDamage = value; }
+        get { return m_bulletDamage; }
+    }
+
+    /// <summary> 弾のスピード </summary>
+    static float m_shootVelocity = 50f;
+    /// <summary> 弾のスピード </summary>
+    public static float ShootVelocity
+    {
+        set { m_shootVelocity = value; }
+        get { return m_shootVelocity; }
+    }
+    /// <summary> 弾を生成する間隔 </summary>
+    static float m_shootTime = 4;
+    /// <summary> 弾を生成する間隔 </summary>
+    public static float ShootTime
+    {
+        set { m_shootTime = value; }
+        get { return m_shootTime; }
+    }
+}
+

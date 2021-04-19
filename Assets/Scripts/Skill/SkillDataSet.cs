@@ -13,22 +13,6 @@ public class SkillDataSet : MonoBehaviour
     /// <summary> 必要コストを表示するText </summary>
     [SerializeField] Text[] m_needCost = null;
 
-    /// <summary> ダメージUP(小)の上がり値 </summary>
-    int m_smallDamageUP = 1;
-    /// <summary> ダメージUP(小)の上がり値 </summary>
-    public int SmallDamageUP => m_smallDamageUP;
-    /// <summary> ダメージUP(大)の上がり値 </summary>
-    int m_largeDamageUP = 2;
-    /// <summary> ダメージUP(大)の上がり値 </summary>
-    public int LargeDamageUP => m_largeDamageUP;
-    /// <summary> 射程範囲(小)の上がり値 </summary>
-    float m_smallRangeUP = 5f;
-    /// <summary> 射程範囲(小)の上がり値 </summary>
-    public float SmallRangeUP => m_smallRangeUP;
-    /// <summary> 射程範囲(大)の上がり値 </summary>
-    float m_largeRangeUP = 10f;
-    /// <summary> 射程範囲(大)の上がり値 </summary>
-    public float LargeRangeUP => m_largeRangeUP;
 
     void Start()
     {

@@ -48,6 +48,8 @@ public class WaveManager : MonoBehaviour
 
     /// <summary> Buttonに一度だけAddListenerするためのbool </summary>
     bool isOneTimeSet = true;
+    /// <summary> SkillSetPanelのAnimatorを一度だけ再生するため </summary>
+    bool isOneTimeAnimatorPlay = true;
     /// <summary> SceneLoadManager </summary>
     SceneLoadManager m_sceneLoadManager;
 
@@ -93,7 +95,11 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     void GameStateSkillTime()
     {
-        m_skillPanelAnimator.Play("ZoomIn");
+        if (isOneTimeAnimatorPlay)
+        {
+            m_skillPanelAnimator.Play("ZoomIn");
+            isOneTimeAnimatorPlay = false;
+        }
     }
 
     /// <summary>
@@ -111,6 +117,7 @@ public class WaveManager : MonoBehaviour
         if (m_wave < m_maxWave) GameManager.Instance.SetNowState(GameState.Start);
         else GameManager.Instance.SetNowState(GameState.Finish);
         m_wave++; // Waveを増やす
+        isOneTimeAnimatorPlay = true;
     }
 
     /// <summary>

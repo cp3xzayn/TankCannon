@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyDetector : MonoBehaviour
 {
     /// <summary>索敵範囲</summary>
-    [SerializeField] float m_targetRange = 4f;
+    [SerializeField] float m_targetRange = 10f;
     /// <summary>敵の検出を行う間隔（単位: 秒）</summary>
     [SerializeField] float m_detectInterval = 1f;
     /// <summary>ロックオンしているオブジェクト</summary>
