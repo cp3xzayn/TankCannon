@@ -13,3 +13,5 @@
 [SkyBox](https://assetstore.unity.com/packages/vfx/shaders/free-skybox-extended-shader-107400)
 
 [フォント](http://marusexijaxs.web.fc2.com/quizfont.html#quizfont5)
+
+→チェックポイント★リベンジ Version 2.0711 を使用しています。
