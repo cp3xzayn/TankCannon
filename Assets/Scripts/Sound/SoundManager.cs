@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -26,12 +23,12 @@ public class SoundManager : MonoBehaviour
     {
         m_bGMSliderObj = FindChieldGameObject(this.gameObject, "BGMSlider");
         m_sESliderObj = FindChieldGameObject(this.gameObject, "SESlider");
-        m_baseCanvas = GameObject.FindWithTag("BaseCanvas");
         m_bGMSlider = m_bGMSliderObj.GetComponent<Slider>();
         m_sESlider = m_sESliderObj.GetComponent<Slider>();
         m_audioSource = GetComponent<AudioSource>();
         SubcribeAddListener(m_soundSettingOpen, "SoundSettingOpen", false);
         SubcribeAddListener(m_soundSettingClose, "SoundSettingClose", true);
+        m_baseCanvas = GameObject.FindWithTag("BaseCanvas");
     }
 
     void Update()
@@ -68,13 +65,18 @@ public class SoundManager : MonoBehaviour
 
         return null;
     }
-    
-   /// <summary>
-   /// Buttonに関数をAddListenerするメソッド
-   /// </summary>
-   /// <param name="button">AddListenerするButton</param>
-   /// <param name="tag">検索するためのTag</param>
-   /// <param name="isBaseCanvasOpen">BaseCanvasを表示するかしないか</param>
+
+    /*---------------------------------------------------------------------------------*/
+    // 以下
+    // BaseCanvasを非表示にしていたのは、2つ以上のCanvasを作っていたので、ぐちゃぐちゃにならないようにするため。
+    // SortOrderでできる内容だった。→ SortOrderで実装済み
+
+    /// <summary>
+    /// Buttonに関数をAddListenerするメソッド
+    /// </summary>
+    /// <param name="button">AddListenerするButton</param>
+    /// <param name="tag">検索するためのTag</param>
+    /// <param name="isBaseCanvasOpen">BaseCanvasを表示するかしないか</param>
     void SubcribeAddListener(Button button, string tag, bool isBaseCanvasOpen)
     {
         button = FindChieldGameObject(this.gameObject, tag).GetComponent<Button>();
@@ -82,7 +84,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// SoundSettingが開いてるかどうかを判定し、BaseCanvasを表示、非表示を切り替える
+    /// SoundSettingが開いてるかどうかを判定し、BaseCanvasを非表示にする
     /// </summary>
     /// <param name="isBaseCanvasOpen"></param>
     void SoundSettingOpenOrClose(bool isBaseCanvasOpen)
@@ -92,4 +94,6 @@ public class SoundManager : MonoBehaviour
             m_baseCanvas.SetActive(isBaseCanvasOpen);
         }
     }
+
+    /*---------------------------------------------------------------------------------*/
 }
