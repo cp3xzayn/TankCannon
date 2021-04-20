@@ -1,5 +1,20 @@
 # TankCannon
 
+
+##### 開発環境
+
+Unity 2019.4.1f1
+
+##### 使用言語
+
+C#
+
+##### 開発期間
+
+2021/04/13　～　2021/04/20
+
+
+
 ### 使用アセット
 
 [戦車のアセット](https://assetstore.unity.com/packages/3d/vehicles/land/cartoon-tank-free-165189)
