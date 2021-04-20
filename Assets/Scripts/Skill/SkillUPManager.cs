@@ -17,13 +17,18 @@ public class SkillUPManager : MonoBehaviour
     float m_shootTime;
 
     /// <summary> 所持コスト </summary>
-    [SerializeField] private int m_cost = 20;
+    [Header("所持コスト"), SerializeField] private int m_cost = 20;
+    /// <summary> Wave終了時に得るコスト </summary>
+    [Header("Wave終了時に得るコスト") ,SerializeField] private int m_getCost = 20;
+    /// <summary> Wave終了時に得るコストを一度だけ足す </summary>
+    bool isOneTimePulse = true;
 
     /// <summary> 所持コストを表示するTextのGameObject </summary>
     [SerializeField] GameObject m_costObj = null;
     /// <summary> 所持コストを表示するText </summary>
     Text m_costText;
 
+    /// <summary> Skillの選択Button </summary>
     [SerializeField] Button[] m_skillButton = null;
 
     /// <summary> SkillData </summary>
@@ -42,8 +47,21 @@ public class SkillUPManager : MonoBehaviour
     {
         m_costText.text = "所持コスト:" + m_cost;
         ButtonInteractable();
+
+        if (GameManager.Instance.NowGameState == GameState.End)
+        {
+            if (isOneTimePulse)
+            {
+                m_cost += m_getCost;
+                isOneTimePulse = false;
+            }
+        }
+        if (GameManager.Instance.NowGameState == GameState.Start) isOneTimePulse = true;
     }
 
+    /// <summary>
+    /// 所持コストとスキルを選択するのに必要なコストを比べてButtonのinteractableを決める
+    /// </summary>
     void ButtonInteractable()
     {
         for (int i = 0; i < m_skillButton.Length; i++)
