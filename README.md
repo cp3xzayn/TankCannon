@@ -1,18 +1,27 @@
 # TankCannon
 
+### 開発目標
 
-### 開発環境
+Androidで遊べるゲームを作る！
 
-Unity 2019.4.1f1
+Androidビルドで必要な知識を吸収する。
 
-### 使用言語
 
-C#
+### アピールポイント
 
-### 開発期間
+・GameObjectのドラッグアンドドロップでの移動を実装したこと
 
-2021/04/13　～　2021/04/20
+・Grid移動を実装したこと
 
+・スキルをScriptableObjectで実装したこと
+
+・LineRendererで戦車の移動可能範囲を実装したこと
+
+・ゲーム内では使用していないが、斜方投射を実装したこと
+
+[斜方投射](https://github.com/cp3xzayn/TankCannon/blob/master/Assets/Test/ShotManager.cs)
+
+・Androidでビルドしたことでノウハウを身に着けることができました。
 
 
 ### 使用アセット
@@ -30,3 +39,14 @@ C#
 [フォント](http://marusexijaxs.web.fc2.com/quizfont.html#quizfont5)
 
 →チェックポイント★リベンジ Version 2.0711 を使用しています。
+
+
+### 開発環境と言語
+
+Unity 2019.4.1f1
+
+C#
+
+### 開発期間
+
+2021/04/13　～　2021/04/20
