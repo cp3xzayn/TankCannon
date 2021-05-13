@@ -18,8 +18,7 @@ Androidビルドで必要な知識を吸収する。
 ・LineRendererで戦車の移動可能範囲を実装したこと
 
 ・ゲーム内では使用していないが、斜方投射を実装したこと
-
-[斜方投射](https://github.com/cp3xzayn/TankCannon/blob/master/Assets/Test/ShotManager.cs)
+[スクリプト](https://github.com/cp3xzayn/TankCannon/blob/master/Assets/Test/ShotManager.cs)
 
 ・Androidでビルドしたことでノウハウを身に着けることができました。
 
