@@ -9,15 +9,15 @@ Androidビルドで必要な知識を吸収する。
 
 ### アピールポイント
 
-・GameObjectのドラッグアンドドロップでの移動を実装したこと
+・GameObjectのドラッグアンドドロップでの移動を実装したこと。
 
-・Grid移動を実装したこと
+・Grid移動を実装したこと。
 
-・スキルをScriptableObjectで実装したこと
+・スキルをScriptableObjectで実装したこと。
 
-・LineRendererで戦車の移動可能範囲を実装したこと
+・LineRendererで戦車の移動可能範囲を実装したこと。
 
-・ゲーム内では使用していないが、斜方投射を実装したこと
+・ゲーム内では使用していないが、斜方投射を実装したこと。
 [スクリプト](https://github.com/cp3xzayn/TankCannon/blob/master/Assets/Test/ShotManager.cs)
 
 ・Androidでビルドしたことでノウハウを身に着けることができました。
